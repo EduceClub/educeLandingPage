@@ -1,29 +1,49 @@
 import React from 'react'
-import { Typography } from '@mui/material'
-import Button from '@mui/material/Button';
-import { makeStyles } from "@mui/styles";
+import { Button, Typography, makeStyles } from '@material-ui/core';
 
 const withStyles = makeStyles(() => ({
     sectionOneWrapper: {
         display: "flex",
-        justifyContent: "space-evenly",
         alignItems: "center",
-        background: "#54c438",
+        justifyContent: "space-around",
+        background: "#AAF0C1",
         height: "500px",
+        marginTop: "30px",
+        padding: "0 17% 0 17%",
     },
     sectionOneHeader: {
         fontWeight: "bold",
-        fontSize: "3rem"
+        fontSize: "3rem",
+        textAlign: "left",
+        marginBottom: "20px"
     },
     sectionOneSubheader: {
-        fontSize: "1.5rem"
+        fontSize: "1rem",
+        textAlign: "left"
     },
     sectionOneJoinButton: {
         background: "black",
         color: "white",
         borderRadius: "20px",
         width: "200px",
-        height: "50px"
+        height: "50px",
+        margin: "20px 0 20px 0",
+        fontSize: "1.125rem",
+        "& > span": {
+            textTransform: "none",
+        },
+        "&:hover":{
+            backgroundColor: "gray"
+        }
+    },
+    bannerImage: {
+        width: "200px"
+    },
+    bannerContentWrapper: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        marginRight: "100px",
     }
 
 }));
@@ -36,14 +56,16 @@ const SectionOne = () => {
 
     return (
         <div className={classes.sectionOneWrapper}> 
-            <div>
-                <Typography class={classes.sectionOneHeader}>Simplify your Knowledge</Typography>
-                <Typography class={classes.sectionOneSubheader}>Capture and build on your insights</Typography>
-                <Button class={classes.sectionOneJoinButton}>Join the Club</Button>
-                <Typography>"When you educe you first see the potential in something and then develop it"</Typography>
-                <Typography>-Vocabulary.com</Typography>
+            <div className={classes.bannerContentWrapper}>
+                <Typography className={classes.sectionOneHeader}>Simplify your knowledge</Typography>
+                <Typography className={classes.sectionOneSubheader}>Capture and build on your insights like never before.</Typography>
+                <Button className={classes.sectionOneJoinButton}>Learn More</Button>
             </div>
-            <div>Image/GIF/animation Placeholder</div>
+            <div>
+                <div>
+                    <img className={classes.bannerImage}src="SVG/woman1.svg"/>
+                </div>
+            </div>
         </div>
     )
 }

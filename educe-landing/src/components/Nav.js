@@ -1,15 +1,16 @@
 import React from 'react'
-import { makeStyles } from "@mui/styles";
-import { Button, Typography } from '@mui/material';
-import { flexbox } from '@mui/system';
+import { Button, Typography, makeStyles } from '@material-ui/core';
+import EduceLogo from '../assets/educeLogo.png'
 
 const withStyles = makeStyles(() => ({
     navbarWrapper: {
         display: "flex",
         justifyContent: "space-between",
-        background: "white",
+        background: "#AAF0C1",
         height: "75px",
-        border: "1px solid black"
+        position: "fixed",
+        top:0,
+        width: "100%"
     },
     navbarImage: {
         width: "200px",
@@ -32,12 +33,12 @@ const Nav = () => {
             <div>
                 <img
                     className={classes.navbarImage}
-                    src="/educeLogo.png"
+                    src={EduceLogo}
                     alt="company logo"
                 />
             </div>
             <div className={classes.navbarMenuWrapper}>
-                <Typography class={classes.menuItem}>How it Works</Typography>
+                <Typography className={classes.menuItem}>How it Works</Typography>
                 <Typography className={classes.menuItem}>Contact</Typography>
                 <Button>Login</Button>
             </div>
