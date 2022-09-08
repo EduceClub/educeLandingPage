@@ -13,24 +13,69 @@ import Button from '@mui/material/Button';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-const withStyles = makeStyles(() => ({
-    stepperWrapper: {
+const withStyles = makeStyles((theme) => ({
+    tabsWrapper: {
         display: "flex",
         padding: "30px",
-        height:"600px"
+        height: "600px",
+        "@media(max-width: 600px)": {
+            padding: "0px"
+        }
     },
     howToContentWrapper: {
         display: "flex",
-        margin: "5% 17% 5% 17%",
+        margin: "5% 14% 5% 14%",
         background: "#AAF0C1",
-        borderRadius: "35px"
+        borderRadius: "35px",
+        "@media(max-width: 600px)": {
+            width: "100%",
+            margin: "0px",
+            borderRadius: "0px"
+        }
     },
     gif: {
-        width: "70%"
+        width: "60%",
+        borderRadius: "35px",
+        maxHeight: "500px",
+        "@media(max-width: 600px)": {
+            width: "100%"
+        }
     },
-    stepperContentWrapper: {
+    tabsContentWrapper: {
         display: "flex",
         justifyContent: "space-evenly",
+    },
+    tabPanelElement: {
+        "& > div":{
+            padding: "20px 0px"
+        }
+    },
+    tabsDescription: {
+        textAlign: "left",
+        width: "100%",
+        margin: "10px 24px 0px 24px",
+        "@media(max-width: 600px)": {
+            margin: "0px",
+            marginBottom: "40px"
+        }
+    },
+    tabLabel: {
+        "& button": {
+            textTransform: "none",
+        }
+    },
+    tabLabelSelected: {
+        color: "black !important",
+    },
+    tabLabelIndicator: {
+        backgroundColor: "black",
+    },
+    tabsInnerContentWrapper: {
+        display: "flex",
+        "@media(max-width: 600px)": {
+            flexDirection: "column",
+            padding: "10px"
+        }
     }
 }));
 
@@ -68,7 +113,7 @@ const HowItWorks = () => {
             >
                 {value === index && (
                     <Box sx={{ p: 3 }}>
-                        <Typography>{children}</Typography>
+                        <div className={classes.tabsInnerContentWrapper}>{children}</div>
                     </Box>
                 )}
             </div>
@@ -92,38 +137,48 @@ const HowItWorks = () => {
 
     return (
         <div className={classes.howToContentWrapper}>
-            <div className={classes.stepperWrapper}>
+            <div className={classes.tabsWrapper}>
                 <Box>
                     <Box>
-                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                            <Tab label="Store" {...a11yProps(0)} />
-                            <Tab label="Build" {...a11yProps(1)} />
-                            <Tab label="Recall" {...a11yProps(2)} />
+                        <Tabs indicatorColor='secondary' classes={{ root: classes.tabLabel}} value={value} onChange={handleChange} aria-label="basic tabs example">
+                            <Tab classes={{root: classes.tabLabelSelected}} label="Store" {...a11yProps(0)} />
+                            <Tab classes={{root: classes.tabLabelSelected}} label="Build" {...a11yProps(1)} />
+                            <Tab classes={{root: classes.tabLabelSelected}} label="Recall" {...a11yProps(2)} />
                         </Tabs>
                     </Box>
-                    <TabPanel value={value} index={0}>
-                        <div className={classes.stepperContentWrapper}>
-                            <div>Store description placeholder</div>
+
+                    <div className={classes.tabsContentWrapper}>
+                        <TabPanel className={classes.tabPanelElement} value={value} index={0}>
+                            <Typography className={classes.tabsDescription}>Store short insights with a title and tag which allow you to recall your information easily.</Typography>
                             <img className={classes.gif} src={Store2} />
-                        </div>
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <div className={classes.stepperContentWrapper}>
-                            <div>Build description placeholder</div>
+                        </TabPanel>
+                    </div>
+
+
+                    <div className={classes.tabsContentWrapper}>
+                        <TabPanel className={classes.tabPanelElement} value={value} index={1}>
+                            <Typography className={classes.tabsDescription}>Share categories with others to help build up on your insights. 
+                            Whether you have a work topic to share with colleagues and industry experts or you have a child's medical information you want to share with your partner.  
+                            <span> <br/><br/>Shared categories allow you to work with others to build updon your information.</span> </Typography>
+                         
                             <img className={classes.gif} src={Buildon} />
-                        </div>
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        <div className={classes.stepperContentWrapper}>
-                            <div>Recall description placeholder</div>
+                        </TabPanel>
+                    </div>
+
+
+                    <div className={classes.tabsContentWrapper}>
+                        <TabPanel className={classes.tabPanelElement} value={value} index={2}>
+                            <Typography className={classes.tabsDescription}>Category tags allow you to see all the insights or information you store to a topic in one view.
+                            This helps you organize your information over time.</Typography>
                             <img className={classes.gif} src={Recall} />
-                        </div>
-                    </TabPanel>
+                        </TabPanel>
+                    </div>
+
                 </Box>
 
 
             </div>
-        </div>
+        </div >
 
     )
 }

@@ -1,14 +1,19 @@
 import { Typography, makeStyles } from '@material-ui/core';
 import React from 'react'
-import StickyNote from '../assets/luis-villasmil-mlVbMbxfWI4-unsplash.jpg'
+import ConfusionGuy from '../assets/confusionGuy.svg'
 
 const withStyles = makeStyles(() => ({
     sectionTwoWrapper: {
         display: "flex",
         alignItems: "center",
-        padding: "0 17% 0 17%",
+        padding: "0 14% 0 14%",
         margin: "auto",
-        background: "black"
+        background: "black",
+        height: "500px",
+        "@media(max-width: 600px)": {
+            flexDirection: "column",
+            height: "auto"
+        }
     },
     sectionTwoHeader: {
         fontWeight: "bold",
@@ -16,6 +21,9 @@ const withStyles = makeStyles(() => ({
         textAlign: "left",
         "& > span": {
             color: "#AAF0C1"
+        },
+        "@media(max-width: 600px)": {
+            fontSize: "2rem"
         }
     },
     sectionTwoText: {
@@ -27,16 +35,23 @@ const withStyles = makeStyles(() => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        width: "60%",
-        color: "white"
+        minWidth: "40%",
+        color: "white",
+        maxHeight: "500px"
     },
     sectionTwoImage: {
-        maxHeight: "450px",
-        margin: "50px 0 50px 50px",
-        borderRadius: "35px"
+        borderRadius: "35px",
+        width: "53vw",
+        "@media(max-width: 600px)": {
+            minWidth: "80vw"
+        }
     },
     imageWrapper: {
-        // width: "60%"
+        display: "flex",
+        marginLeft: "-150px",
+        "@media(max-width: 600px)": {
+            marginLeft: "0px"
+        }
     },
     sectionTwoHeaderTextWrapper: {
         display: "flex",
@@ -56,6 +71,9 @@ const SectionTwo = () => {
 
     return (
         <div className={classes.sectionTwoWrapper}>
+            <div className={classes.imageWrapper}>
+                <img className={classes.sectionTwoImage} src={ConfusionGuy} />
+            </div>
             <div className={classes.sectionTwoContentWrapper}>
                 <div className={classes.sectionTwoHeaderTextWrapper}>
                     <Typography className={classes.sectionTwoHeader}>Information overload is<span>&nbsp;real</span></Typography>
@@ -67,9 +85,7 @@ const SectionTwo = () => {
                     <Typography className={classes.sectionTwoText}>Educe is setup to be your central repository for you to store your short insights and then build upon them.</Typography>
                 </div>
             </div>
-            <div className={classes.imageWrapper}>
-                <img className={classes.sectionTwoImage} src={StickyNote} />
-            </div>
+
         </div>
     )
 }
